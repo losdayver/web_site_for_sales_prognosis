@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=5">
+  <title>Прогноз стоимости</title>
+</head>
+
+<body style="background-color:lightblue;">
+{% load static %}
+<img src="{% static '/cutecat.jpg' %}" width="100" height="100"/>
+  <h1>Прогноз стоимости</h1>
+  {% include 'navbar.html' %}
+
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

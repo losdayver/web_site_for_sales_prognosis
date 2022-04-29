@@ -1,0 +1,15 @@
+<table border="1">
+   <caption><big>Отчет</big></caption>
+
+   {% for h in contents.0 %}
+   <th style="background-color:lightgreen;">{{h}}</th>
+   {% endfor %}
+   {% for i in contents %}
+   <tr>
+      {% for h in i %}
+         <td>{{h}}</td>
+      {% endfor %}
+   </tr>
+   {% endfor %}
+
+  </table>
