@@ -1,15 +1,42 @@
-<table border="1">
-   <caption><big>Отчет</big></caption>
+<head>
+   <style>
+   table {
+     border-collapse: collapse;
+     width: 20%;
+     margin: auto;
+   }
 
-   {% for h in contents.0 %}
-   <th style="background-color:lightgreen;">{{h}}</th>
-   {% endfor %}
-   {% for i in contents %}
-   <tr>
-      {% for h in i %}
-         <td>{{h}}</td>
+   th, td {
+     text-align: centre;
+     padding: 8px;
+   }
+
+   tr:nth-child(even){background-color: #edd9b7}
+
+   th {
+     background-color: orange;
+     color: white;
+   }
+   </style>
+</head>
+<body>
+   <h1>Смета</h1>
+   {% for l in contents %}
+   <table border="1">
+      {% for h in l.0 %}
+      <th>{{h}}</th>
       {% endfor %}
-   </tr>
+      {% for i in l %}
+      <tr>
+         {% if not forloop.first %}
+         {% for h in i %}
+            <td>{{h}}</td>
+         {% endfor %}
+         {% endif %}
+      </tr>
+      {% endfor %}
+   </table>
+   <br>
    {% endfor %}
+</body>
 
-  </table>

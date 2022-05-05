@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Составление прогноза</h2>
-<ul>
-    <li><p>Загрузите файл расширения <b>.csv</b> или <b>.txt</b></p></li>
-        <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
-            <input type="file" name="document" accept=".csv,.txt" />
-            <button type="submit">Прикрепить</button>
-        </form>
-    <br/>
-    {% if success == True %}
-        <p><i>Файл успешно загружен</i></p>
-        <p><i>{% include 'table.html' %}</i></p>
-    {% endif %}
+<head>
+    <title>Алгоритм</title>
+</head>
+<body>
+    <h2>Составление прогноза</h2>
+        <p>Загрузите файл расширения <b>.csv</b> или <b>.txt</b></p>
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <input type="file" name="document" accept=".csv,.txt" />
+                <button type="submit">Прикрепить</button>
+            </form>
+        <br/>
+        {% if success == True %}
+            <p><i>Файл успешно загружен</i></p>
+            <p><i>{% include 'table.html' %}</i></p>
+        {% endif %}
+    <hr/>
+    <h2>Как оформить смету?</h2>
+    <p>Для корректной работы алгоритма необходимо, чтобы прикрепляемыый файл соответсотовал <strong><a target="_blank" href="https://ru.wikipedia.org/wiki/CSV">стандарту .csv</a></strong></p>
+</body>
 
-</ul>
-<hr/>
-<h2>Как оформить смету?</h2>
-<ul>
-    <li><p>Для корректной работы алгоритма необходимо, чтобы прикрепляемыый файл соответсотовал <a target="_blank" href="https://ru.wikipedia.org/wiki/CSV">стандарту .csv</a></p></li>
-</ul>
-{% endblock %}
+{% endblock %} 
