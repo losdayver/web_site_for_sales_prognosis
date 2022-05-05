@@ -1,4 +1,5 @@
 <head>
+   {% load tags %}
    <style>
    table {
      border-collapse: collapse;
@@ -36,7 +37,8 @@
       </tr>
       {% endfor %}
    </table>
-   <br>
+   {{ results|return_item:forloop.counter0 }}
+   <br><br><br>
    {% endfor %}
 </body>
 

@@ -10,7 +10,7 @@ def contacts(request):
     return render(request, 'contacts.html')
 
 def algorithm(request):
-    context = {'success': False, 'contents':'', 'id_header_index':''} #Эти данные пойдут в html страницу
+    context = {'success': False, 'contents':'', 'results':[] } #Эти данные пойдут в html страницу
     if request.method == 'POST':
         try:
 
@@ -22,7 +22,7 @@ def algorithm(request):
 
             id_index = get_header_index(contents, 'id')
             context['id_header_index'] = id_index
-            print(id_index)
+            #print(contents)
             id_list = []
 
             for row in contents[1:]:
@@ -31,8 +31,10 @@ def algorithm(request):
             list_of_lists = []
 
             for id in id_list:
-                list_of_lists.append(get_by_id_sort_by_date(contents, id))
-
+                item_table = get_by_id_sort_by_date(contents, id)
+                context['results'].append(get_interpolation(get_line(item_table)))
+                print('debug')
+                list_of_lists.append(item_table)
 
             context['contents'] = list_of_lists
             uploaded_file.close()

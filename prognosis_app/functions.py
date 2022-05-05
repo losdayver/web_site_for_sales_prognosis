@@ -58,4 +58,38 @@ def get_by_id_sort_by_date(l, id):
 
     return id_item_list
 
+def get_line(l):
+    rows_count = len(l)-1
+
+    c_index = get_header_index(l, 'количество проданного')
+
+    s_index = get_header_index(l, 'цена продажи')
+
+    if rows_count == 1:
+        return []
+
+    c1 = 0
+    s1 = 0
+    for r in l[1:rows_count//2]:
+        c1 += int(r[c_index])
+        s1 += int(r[s_index])
+
+
+    c2 = 0
+    s2 = 0
+    for r in l[rows_count // 2:]:
+        c2 += int(r[c_index])
+        s2 += int(r[s_index])
+
+
+    return [s1/(rows_count//2), c1/(rows_count//2), s2/(rows_count - rows_count//2), c2/(rows_count - rows_count//2)]
+
+def get_interpolation(line):
+    if len(line) <= 1: return 'недостаточно данных для составления прогноза'
+
+    slope = (line[1] - line[3]) / (line[0] - line[2])
+
+    return '(Спрос) = '+str(slope)+'*(Цена продажи)'
+
+
 
